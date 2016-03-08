@@ -1,42 +1,30 @@
 defmodule RomanNumeral do
-  def converts(number) when number >= 1000 do
-    "M" <> converts(number - 1000)
+
+  @numerals [
+    {1000, "M"},
+    {500, "D"},
+    {100, "C"},
+    {90, "XC"},
+    {50, "L"},
+    {10, "X"},
+    {5, "V"},
+    {4, "IV"},
+    {1, "I"}
+  ]
+
+  def converts(number) do
+    converts(number, @numerals)
   end
 
-  def converts(number) when number >= 500 do
-    "D" <> converts(number - 500)
-  end
-
-  def converts(number) when number >= 100 do
-    "C" <> converts(number - 100)
-  end
-
-  def converts(number) when number >= 90 do
-    "XC" <> converts(number - 90)
-  end
-
-  def converts(number) when number >= 50 do
-    "L" <> converts(number - 50)
-  end
-
-  def converts(number) when number >= 10 do
-    "X" <> converts(number - 10)
-  end
-
-  def converts(number) when number >= 5 do
-    "V" <> converts(number - 5)
-  end
-
-  def converts(number) when number >= 4 do
-    "IV"
-  end
-
-  def converts(number) when number < 1 do
+  def converts(number, _) when number < 1 do
     ""
   end
 
-  def converts(number) do
-    "I" <> converts(number - 1)
+  def converts(number, [{arabic, roman} | tail]) when number >= arabic do
+    roman <> converts(number - arabic, [{arabic, roman} | tail])
   end
 
+  def converts(number, [_ | tail]) do
+    converts(number, tail)
+  end
 end
