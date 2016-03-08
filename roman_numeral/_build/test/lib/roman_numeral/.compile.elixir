@@ -1,0 +1,6 @@
+v2.
+{<<"_build/test/lib/roman_numeral/ebin/Elixir.RomanNumeral.beam">>,
+ 'Elixir.RomanNumeral',module,<<"lib/roman_numeral.ex">>,
+ ['Elixir.Kernel','Elixir.Module'],
+ [erlang],
+ [],nil}.
